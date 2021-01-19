@@ -3,14 +3,15 @@
 <html>
 
 <head>
+    <script src="cordova.js"></script>
+    <script src="index.js"></script>
     <title>Hello World</title>
 </head>
 
 <body>
+    <div id="output-debug" style="width: 100%; height: 100px; overflow: scroll; background-color: lightgray;"></div>
     <button onclick="runCamera()">Click me to run camera...</button>
-    <img id="img-main" src="" />
-    <script src="cordova.js"></script>
-    <script src="index.js"></script>
+    <img id="img-main" />
 </body>
 
 </html>

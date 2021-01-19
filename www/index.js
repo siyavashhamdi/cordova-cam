@@ -1,12 +1,26 @@
-document.addEventListener("deviceready", onDeviceReady, false);
-
-function onDeviceReady() {
-    alert("onDeviceReady | init");
+const bootstrap = () => {
+    document.addEventListener("deviceready", onDeviceReady, false);
 }
 
-function runCamera() {
+const doLog = (text, isConsole = false, isAlert = false) => {
+    const outputDebug = document.getElementById("output-debug");
+
+    outputDebug.innerHTML += text + "<BR />";
+
+    if (isConsole)
+        console.log(text);
+
+    if (isAlert)
+        alert(text);
+}
+
+const onDeviceReady = () => {
+    doLog("onDeviceReady | init");
+}
+
+const runCamera = () => {
     try {
-        alert("runCamera | init");
+        doLog("runCamera | init");
 
         navigator.camera.getPicture(onSuccess, onFail, {
             quality: 100,
@@ -16,15 +30,15 @@ function runCamera() {
             correctOrientation: true
         });
     } catch (ex) {
-        alert("runCamera | ex: " + ex);
+        doLog("runCamera | ex: " + ex);
     }
 
-    alert("runCamera | terminated");
+    doLog("runCamera | terminated");
 }
 
-function onSuccess(imageData) {
+const onSuccess = (imageData) => {
     try {
-        alert("onSuccess | init");
+        doLog("onSuccess | init");
 
         const image = document.getElementById("img-main");
 
@@ -32,10 +46,12 @@ function onSuccess(imageData) {
         image.style.margin = "10px";
         image.style.display = "block";
     } catch (ex) {
-        alert("onSuccess | ex: " + message);
+        doLog("onSuccess | ex: " + message);
     }
 }
 
-function onFail(message) {
-    alert("onFail | msg: " + message);
+const onFail = (message) => {
+    doLog("onFail | msg: " + message);
 }
+
+bootstrap();
